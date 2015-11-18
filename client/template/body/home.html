@@ -1,0 +1,21 @@
+<template name="home">
+  {{> header}}
+  <title>Choose Game</title>
+  <h2 align="center">--- Choose Game ---</h2>
+  <br>
+  <div class="container" align="center">
+    <a id="game" href="{{pathFor 'rps'}}">
+      <img src="assets/rps.png" alt="Play" width="150" height="150">
+      <h2>Rock Paper Scissors</h2>
+    </a>
+
+  </div>
+  <br>
+  <div class="container" align="center">
+    <a id="game" href="{{pathFor 'ttt'}}">
+      <img src="assets/ttt.png" alt="Play" width="150" height="150">
+      <h2>Tic Tac Toe</h2>
+    </a>
+  </div>
+
+</template>

@@ -1,0 +1,39 @@
+<template name="rps">
+  {{> header}}
+  <div class="container" align="center">
+
+    <button name="rock" id="rock"><input type="image" src="assets/rock.jpg" name="rock" width="120" height="120"></button>
+    <button name="paper" id="paper"><input type="image" src="assets/paper.jpg" name="paper" width="120" height="120"></button>
+    <button name="scissors" id="scissors"><input type="image" src="assets/scissors.jpg" name="scissors" width="120" height="120"></button>
+
+  </div>
+
+  <div class="container" align="center">
+
+    <div class="col-sm-4" align="right">
+      <input type="image" id="you" src="assets/qm.png" name="you" width="100" height="100">
+      <p align="right">You</p>
+      <p class="col-sm-12">
+        {{youWon}}
+      </p>
+    </div>
+
+
+    <div class="col-sm-4" align="center">
+      <input align="center" type="image" id="board" src="assets/draw.png" name="board" width="95" height="95">
+      <p align="center">Draw</p>
+      <p class="col-sm-12">
+          {{equ}}
+      </p>
+    </div>
+
+    <div class="col-sm-4" align="left">
+      <input type="image" id="comp" src="assets/qm.png" name="comp" width="100" height="100">
+      <p align="left">Computer</p>
+      <p class="col-sm-12">
+        {{compWon}}
+      </p>
+    </div>
+
+  </div>
+</template>
