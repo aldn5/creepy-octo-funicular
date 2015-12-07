@@ -1,4 +1,5 @@
 <head>
+  <meta charset="utf-8" />
   <title>webGames</title>
   <meta name="description" content="app, web app, games" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -6,10 +7,15 @@
 
 <template name="main">
   <div class="container">
+    {{> header}}
     <div id="main">
       {{> yield}}
     </div>
   </div>
-  <hr />
-  <p id="footer" align="center">Copyright &copy; webGames, 2015.</p>
+
+  <div class="footer">
+    <hr />
+    <p align="center">Copyright &copy; webGames, 2015.</p>
+  </div>
+
 </template>

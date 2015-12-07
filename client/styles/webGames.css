@@ -11,11 +11,20 @@ background: #bebcfc;
   padding-top: 5px;
 }
 
-#footer {
+* { padding: 0; margin: 0; }
+
+canvas {
+  background: #eee;
+  display: block;
+  margin: 0 auto;
+}
+
+.footer {
   position: absolute;
   align-items: center;
-  bottom: 5px;
+  bottom: 1px;
   width: 100%;
+  background-color: inherit;
 }
 
 #score {
@@ -141,7 +150,7 @@ position: center;
 height: 300px;
 }
 .col-sm-4 {
-  
+
 }
 .jumbotron{
 text-align: center;
