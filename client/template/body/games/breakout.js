@@ -1,11 +1,14 @@
 Template.breakout.onRendered (function(){
 
+  var lives = 3;
+
   //checks control buttons pressed
   var rightPressed = false;
   var leftPressed = false;
 
   document.addEventListener("keydown", keyDownHandler, false);
   document.addEventListener("keyup", keyUpHandler, false);
+  document.addEventListener("mousemove", mouseMoveHandler, false);
 
   var score = 0;
 
@@ -65,11 +68,24 @@ Template.breakout.onRendered (function(){
         leftPressed = false;
     }
   }
+  function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleStart = relativeX - paddleWidth/2;
+    }
+  }
 
   function drawScore() {
       ctx.font = "16px Arial";
       ctx.fillStyle = "#0095DD";
       ctx.fillText("Score: "+score, 8, 20);
+  }
+
+  // control lives
+  function drawLives() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Lives: "+lives, canvas.width-65, 20);
   }
 
   //shapes
@@ -134,6 +150,7 @@ Template.breakout.onRendered (function(){
       collisionDetection();
       Bricks();
       drawScore();
+      drawLives();
 
       //ball and wall collision detection
       if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
@@ -146,12 +163,22 @@ Template.breakout.onRendered (function(){
         if(x > paddleStart && x < paddleStart + paddleWidth) {
           dy = -dy;
           //speed of ball controller
-          if(speed >= 35)
-            calll(speed -= 1);
+          //if(speed >= 35)
+            //calll(speed -= 1);
         }
         else {
-          alert("GAME OVER");
-          document.location.reload();
+          lives--;
+          if(!lives) {
+              alert("GAME OVER");
+              document.location.reload();
+          }
+          else {
+              x = canvas.width/2;
+              y = canvas.height/2;
+              dx = 2;
+              dy = -2;
+              paddleStart = (canvas.width-paddleWidth)/2;
+          }
         }
       }
 
@@ -160,18 +187,13 @@ Template.breakout.onRendered (function(){
 
       // paddle controller
       if(rightPressed && paddleStart < canvas.width-paddleWidth) {
-        paddleStart += 4;
+        paddleStart += 5;
       }
       else if(leftPressed && paddleStart > 0) {
-        paddleStart -= 4;
+        paddleStart -= 5;
       }
+      
+      requestAnimationFrame(draw);
   }
-
-
-  setInterval(draw, speed);
-  function calll() {
-    setInterval(draw, speed);
-  }
-
-
+  draw();
 })
